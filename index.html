@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Intelligence | V2</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="controls-panel">
+            <div class="panel-header">
+                <h2>Projection Engine</h2>
+            </div>
+            
+            <div class="scenario-system">
+                <button class="scenario-btn active" data-scenario="base">Base</button>
+                <button class="scenario-btn" data-scenario="conservative">Conservative</button>
+                <button class="scenario-btn" data-scenario="aggressive">Aggressive</button>
+            </div>
+
+            <div class="controls-scroll-area">
+                <div class="control-group-title">Accumulation Phase</div>
+                
+                <div class="input-group">
+                    <div class="input-header">
+                        <label>Initial Capital</label>
+                        <input type="number" id="lump-num" value="50000" min="0" step="1000">
+                    </div>
+                    <input type="range" id="lump-slider" value="50000" min="0" max="1000000" step="1000">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-header">
+                        <label>Monthly SIP</label>
+                        <input type="number" id="sip-num" value="2000" min="0" step="100">
+                    </div>
+                    <input type="range" id="sip-slider" value="2000" min="0" max="20000" step="100">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-header">
+                        <label>Target Working Years</label>
+                        <input type="number" id="years-num" value="20" min="1" max="60" step="1">
+                    </div>
+                    <input type="range" id="years-slider" value="20" min="1" max="60" step="1">
+                </div>
+
+                <div class="control-group-title">Market & Economy</div>
+                
+                <div class="input-group">
+                    <div class="input-header">
+                        <label>Expected CAGR (%)</label>
+                        <input type="number" id="cagr-num" value="8.5" min="0" max="30" step="0.1">
+                    </div>
+                    <input type="range" id="cagr-slider" value="8.5" min="0" max="30" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-header">
+                        <label>Inflation Rate (%)</label>
+                        <input type="number" id="inflation-num" value="3.0" min="0" max="15" step="0.1">
+                    </div>
+                    <input type="range" id="inflation-slider" value="3.0" min="0" max="15" step="0.1">
+                </div>
+
+                <div class="control-group-title">Distribution Phase</div>
+
+                <div class="input-group">
+                    <div class="input-header">
+                        <label>Retirement Duration (Yrs)</label>
+                        <input type="number" id="withdraw-years-num" value="30" min="0" max="50" step="1">
+                    </div>
+                    <input type="range" id="withdraw-years-slider" value="30" min="0" max="50" step="1">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-header">
+                        <label>Monthly Withdrawal Target</label>
+                        <input type="number" id="withdraw-amt-num" value="8000" min="0" step="500">
+                    </div>
+                    <input type="range" id="withdraw-amt-slider" value="8000" min="0" max="100000" step="500">
+                </div>
+            </div>
+        </aside>
+
+        <main class="dashboard-panel">
+            <div class="intelligence-banner" id="insight-banner">
+                <span class="insight-icon">⚡</span>
+                <p id="insight-text">Analyzing projection data...</p>
+            </div>
+
+            <header class="kpi-hierarchy">
+                <div class="hero-kpi-card">
+                    <div class="kpi-label">Projected Peak Wealth</div>
+                    <div class="hero-value" id="kpi-peak-value">$0</div>
+                    <div class="kpi-subtext" id="kpi-peak-year">Terminal Year 0</div>
+                </div>
+                
+                <div class="secondary-kpis">
+                    <div class="kpi-card">
+                        <div class="kpi-label">Real Purchasing Power</div>
+                        <div class="kpi-value" id="kpi-real-value">$0</div>
+                        <div class="kpi-subtext">Inflation discounted</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Capital Invested</div>
+                        <div class="kpi-value" id="kpi-invested">$0</div>
+                        <div class="kpi-subtext">Principal base</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-depletion-card">
+                        <div class="kpi-label">Withdrawal Status</div>
+                        <div class="kpi-value" id="kpi-depletion">Evaluating</div>
+                        <div class="kpi-subtext" id="kpi-depletion-sub">Distribution safety</div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="chart-container">
+                <canvas id="projectionChart"></canvas>
+            </section>
+        </main>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="calculator.js"></script>
+    <script src="charts.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
